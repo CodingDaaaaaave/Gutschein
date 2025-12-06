@@ -16,9 +16,16 @@
             background: #c41e3a;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             padding: 10px;
+        }
+        
+        /* Desktop: zentriert */
+        @media (min-width: 769px) {
+            body {
+                align-items: center;
+            }
         }
         
         .voucher {
@@ -29,24 +36,37 @@
             border-radius: 20px;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         /* Tablet Anpassungen */
         @media (max-width: 768px) {
             .voucher {
                 padding: 15px;
+                min-height: 100vh;
             }
         }
         
         /* Smartphone Anpassungen */
         @media (max-width: 480px) {
             body {
-                padding: 5px;
+                padding: 0;
             }
             
             .voucher {
                 padding: 15px 10px;
-                border-radius: 15px;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+        }
+        
+        /* Desktop: normale Höhe */
+        @media (min-width: 769px) {
+            .voucher {
+                min-height: auto;
             }
         }
         
@@ -123,6 +143,10 @@
         .main-text {
             text-align: center;
             margin: 120px 0 40px 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .title {
@@ -142,7 +166,7 @@
         /* Tablet: kleinerer Text */
         @media (max-width: 768px) {
             .main-text {
-                margin: 100px 0 30px 0;
+                margin: 80px 0 30px 0;
             }
             
             .title {
@@ -156,10 +180,11 @@
             }
         }
         
-        /* Smartphone: viel kleinerer Text */
+        /* Smartphone: viel kleinerer Text und weniger Abstand oben */
         @media (max-width: 480px) {
             .main-text {
-                margin: 80px 0 25px 0;
+                margin: 60px 0 20px 0;
+                justify-content: flex-start;
             }
             
             .title {
@@ -177,6 +202,10 @@
         
         /* Sehr kleine Smartphones */
         @media (max-width: 360px) {
+            .main-text {
+                margin: 50px 0 15px 0;
+            }
+            
             .title {
                 font-size: 36px;
                 letter-spacing: 3px;
