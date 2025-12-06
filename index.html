@@ -4,143 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dein Weihnachts-Wunschgutschein</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Grundlegende Stile */
+        /* Allgemeine Stile und Layout */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #C54245;
-            background-image: linear-gradient(135deg, #f0f4f7 0%, #e8eef3 100%);
-            color: #333;
-            text-align: center;
-            padding: 20px 10px;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #3b8e8b; /* Hintergrundfarbe außerhalb des Gutscheins */
             margin: 0;
-            min-height: 100vh;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* Der Gutschein-Container */
+        /* Gutschein-Container: Das tiefrote Feld */
         .voucher-container {
             width: 100%;
-            max-width: 650px;
-            margin: auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            /* Weihnachtlicher Rahmen */
-            border: 8px solid #A52A2A; /* Dunkles Rot/Braun */
+            max-width: 400px; 
+            min-height: 700px; /* Feste Mindesthöhe, um Platz für die Grafiken zu schaffen */
+            background-color: #A52A2A; /* Tiefes Rot */
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Weihnachts-Akzent (z.B. ein Stern/Schneeflocke) */
-        .voucher-container::before {
-            content: '⭐';
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            font-size: 3em;
-            opacity: 0.7;
-            transform: rotate(-15deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Elemente unten bündig */
+            align-items: center;
+            padding-bottom: 30px;
+            box-sizing: border-box;
+            color: #ffffff; /* Weißer Text */
+            overflow: hidden; /* Wichtig für die Emojis und Punkte */
         }
         
-        /* Überschriften */
-        .greeting {
-            font-family: 'Playfair Display', serif;
-            color: #228B22; /* Waldgrün */
-            font-size: 2.5em;
-            margin-bottom: 5px;
-            border-bottom: 2px solid #A52A2A;
-            padding-bottom: 10px;
+        /* Schnee-/Hintergrundpunkte (CSS-Gradient) */
+        .voucher-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Hintergrund-Pattern aus vielen kleinen weißen radial-gradienten (Punkte) */
+            background-image: radial-gradient(white 1.5px, transparent 1px);
+            background-size: 15px 15px; /* Abstand der Punkte */
+            opacity: 0.1;
+            pointer-events: none;
         }
 
-        .gift-title {
-            color: #A52A2A; /* Dunkles Rot/Braun */
-            font-size: 1.6em;
-            font-weight: bold;
-            margin-top: 10px;
-            margin-bottom: 25px;
+        /* Grafische Elemente (Emojis) - Absolut positioniert */
+        .graphic-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
         }
 
-        /* Gutschein-Informationen */
-        .details {
+        /* Baum, Weihnachtsmann, Geschenke positionieren */
+        .graphic-elements .tree, .santa, .gift, .hat, .ornament {
+            position: absolute;
+            font-size: 5em; /* Größe der Grafiken */
+        }
+        .tree { bottom: 250px; left: 10px; font-size: 6em; }
+        .santa { bottom: 250px; right: 20px; font-size: 6em; }
+        .gift { bottom: 250px; left: 120px; font-size: 4em; }
+        
+        /* Obere Dekoration */
+        .hat { top: 20px; right: 20px; font-size: 4em; }
+        .ornament { top: 20px; left: 20px; font-size: 3.5em; }
+
+        /* Titel des Gutscheins (GUTSCHEIN) */
+        .voucher-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.8em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            position: relative; /* Wichtig, damit es über den Grafiken liegt */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin-top: 150px; /* Platz für Dekoration oben */
+        }
+
+        /* Beschreibungstext */
+        .voucher-description {
             font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: left;
-            padding: 0 15px;
+            line-height: 1.4;
+            text-align: center;
+            padding: 0 30px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
         }
 
-        /* Gutschein-Code-Sektion */
+        /* Gutschein-Code Bereich */
         .code-area {
-            background-color: #f9f9f9;
-            border: 1px dashed #A52A2A;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
+            width: 85%;
+            padding: 15px 10px;
+            background-color: transparent; 
+            border: 2px dashed #eee; /* Hellblauer/weißer Rahmen */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
         }
 
         .code-label {
             font-size: 0.9em;
-            color: #666;
             margin-bottom: 5px;
+            color: #eee;
         }
 
         .code {
-            font-family: monospace;
-            font-size: 1.8em;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
             font-weight: bold;
-            color: #007bff; /* Blau für den Code */
-            display: block;
+            color: #FFD700; /* Goldfarbe für den Code */
+            word-break: break-all;
         }
 
-        /* Schlusswort/Absender */
+        /* Weitere Details und Signatur */
+        .details-info {
+            font-size: 0.9em;
+            line-height: 1.3;
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
+
         .signature {
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #ddd;
+            font-size: 1em;
             font-style: italic;
-            color: #555;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
         }
 
-        /* Medien-Anfrage für kleinere Bildschirme */
-        @media (max-width: 600px) {
-            .greeting {
-                font-size: 2em;
-            }
-            .gift-title {
-                font-size: 1.4em;
-            }
+        /* Responsive Anpassungen */
+        @media (max-width: 480px) {
             .voucher-container {
-                margin: 20px auto;
-                padding: 25px 15px;
+                min-height: 600px;
             }
+            .voucher-title {
+                font-size: 2.2em;
+            }
+            .voucher-description {
+                font-size: 1em;
+            }
+            .tree { bottom: 200px; left: 5px; font-size: 5em; }
+            .santa { bottom: 200px; right: 10px; font-size: 5em; }
+            .gift { bottom: 200px; left: 100px; font-size: 3em; }
         }
     </style>
 </head>
 <body>
     <div class="voucher-container">
-        <h1 class="greeting">✨ Ein Weihnachtsgeschenk für [Name des Beschenkten]! ✨</h1>
         
-        <div class="gift-title">
-            Dein persönlicher Gutschein für: <br>
-            **[DEIN GESCHENK / WERT HIER EINTRAGEN]**
+        <div class="graphic-elements">
+            <span class="ornament">🔴</span>
+            <span class="hat">🧑‍🎄</span> 
+            
+            <span class="tree">🎄</span>
+            <span class="santa">🎅</span>
+            <span class="gift">🎁</span>
         </div>
 
-        <div class="details">
-            <p>Liebe/r [Name des Beschenkten],</p>
-            <p style="text-indent: 20px;">
-                [IHRE PERSÖNLICHE WEIHNACHTSBOTSCHAFT UND BEGRÜNDUNG. Z.B.: "Ich wünsche dir eine wunderbare Weihnachtszeit und hoffe, diese kleine Auszeit verschafft dir pure Entspannung. Du hast es dir verdient!"]
-            </p>
-            
-            <p><strong>Einlöse-Details:</strong></p>
-            <ul>
-                <li><strong>Gültig bis:</strong> [DATUM HIER EINFÜGEN, z.B. 31.12.2026]</li>
-                <li><strong>So funktioniert's:</strong> [KURZE ANLEITUNG ZUR EINLÖSUNG]</li>
-            </ul>
+        <div class="voucher-title">GUTSCHEIN</div>
+
+        <div class="voucher-description">
+            als kleines Extra ein <br>
+            gemeinsamer Shoppingtrip <br>
+            für ein paar T-Shirts und <br>
+            /oder eine schöne Leggings
         </div>
 
         <div class="code-area">
@@ -148,8 +192,13 @@
             <div class="code">[EINZIGARTIGER CODE HIER EINFÜGEN]</div>
         </div>
 
+        <div class="details-info">
+            Gültig bis: [DATUM HIER EINFÜGEN, z.B. 31.12.2025]<br>
+            So funktioniert's: [ANLEITUNG ZUR EINLÖSUNG, z.B. "Einfach bei mir melden!"]
+        </div>
+
         <p class="signature">
-            Frohe Feiertage von Herzen, <br>
+            Frohe Feiertage von Herzen,<br>
             Dein/e [Ihr Name]
         </p>
     </div>
