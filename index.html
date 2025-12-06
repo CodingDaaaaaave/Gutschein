@@ -18,17 +18,36 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
         
         .voucher {
             background: #c41e3a;
             width: 100%;
             max-width: 600px;
-            padding: 40px;
+            padding: 20px;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
+        }
+        
+        /* Tablet Anpassungen */
+        @media (max-width: 768px) {
+            .voucher {
+                padding: 15px;
+            }
+        }
+        
+        /* Smartphone Anpassungen */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .voucher {
+                padding: 15px 10px;
+                border-radius: 15px;
+            }
         }
         
         .snow {
@@ -77,6 +96,29 @@
             height: 90px;
         }
         
+        /* Smartphone: kleinere obere Dekorationen */
+        @media (max-width: 480px) {
+            .holly {
+                top: 15px;
+                left: 10px;
+                width: 50px;
+                height: 38px;
+            }
+            
+            .ornament {
+                top: 20px;
+                width: 40px;
+                height: 53px;
+            }
+            
+            .santa-hat {
+                top: 15px;
+                right: 10px;
+                width: 65px;
+                height: 58px;
+            }
+        }
+        
         /* Main text */
         .main-text {
             text-align: center;
@@ -95,6 +137,54 @@
             color: #f5e6d3;
             font-size: 20px;
             line-height: 1.6;
+        }
+        
+        /* Tablet: kleinerer Text */
+        @media (max-width: 768px) {
+            .main-text {
+                margin: 100px 0 30px 0;
+            }
+            
+            .title {
+                font-size: 56px;
+                letter-spacing: 6px;
+                margin-bottom: 20px;
+            }
+            
+            .description {
+                font-size: 18px;
+            }
+        }
+        
+        /* Smartphone: viel kleinerer Text */
+        @media (max-width: 480px) {
+            .main-text {
+                margin: 80px 0 25px 0;
+            }
+            
+            .title {
+                font-size: 42px;
+                letter-spacing: 4px;
+                margin-bottom: 15px;
+            }
+            
+            .description {
+                font-size: 15px;
+                line-height: 1.5;
+                padding: 0 5px;
+            }
+        }
+        
+        /* Sehr kleine Smartphones */
+        @media (max-width: 360px) {
+            .title {
+                font-size: 36px;
+                letter-spacing: 3px;
+            }
+            
+            .description {
+                font-size: 14px;
+            }
         }
         
         /* Bottom decorations */
@@ -119,6 +209,69 @@
         .santa {
             width: 140px;
             height: 160px;
+        }
+        
+        /* Tablet: kleinere untere Dekorationen */
+        @media (max-width: 768px) {
+            .bottom-decorations {
+                margin-top: 40px;
+            }
+            
+            .tree {
+                width: 100px;
+                height: 133px;
+            }
+            
+            .gift {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .santa {
+                width: 110px;
+                height: 125px;
+            }
+        }
+        
+        /* Smartphone: noch kleinere untere Dekorationen */
+        @media (max-width: 480px) {
+            .bottom-decorations {
+                margin-top: 30px;
+                gap: 5px;
+            }
+            
+            .tree {
+                width: 70px;
+                height: 93px;
+            }
+            
+            .gift {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .santa {
+                width: 80px;
+                height: 91px;
+            }
+        }
+        
+        /* Sehr kleine Smartphones: minimal Größen */
+        @media (max-width: 360px) {
+            .tree {
+                width: 60px;
+                height: 80px;
+            }
+            
+            .gift {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .santa {
+                width: 70px;
+                height: 80px;
+            }
         }
         
         /* SVG styles */
