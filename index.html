@@ -65,7 +65,7 @@
             transform: scale(1.1);
         }
 
-        /* Top decorations */
+        /* Top decorations - Größen angepasst */
         .holly,
         .ornament,
         .santa-hat {
@@ -75,39 +75,45 @@
         .holly {
             top: 30px;
             left: 30px;
-            width: 96px;
+            /* 96px * 1.2 = 115px (ca. 112px für Proportion) */
+            width: 112px; 
         }
 
         .ornament {
             top: 40px;
             left: 50%;
             transform: translateX(-50%);
-            width: 72px;
+            /* 72px * 1.2 = 86px (ca. 84px für Proportion) */
+            width: 84px; 
         }
 
         .santa-hat {
             top: 30px;
             right: 30px;
-            width: 120px;
+            /* 120px * 1.2 = 144px */
+            width: 144px;
         }
 
-        /* Mobile size adjustments */
+        /* Mobile size adjustments - Größen angepasst */
         @media (max-width: 480px) {
             .holly {
                 top: 5px;
                 left: 10px;
-                width: 84px;
+                /* 84px * 1.2 = 101px (ca. 96px für Proportion) */
+                width: 96px; 
             }
 
             .ornament {
                 top: 10px;
-                width: 66px;
+                /* 66px * 1.2 = 79px (ca. 78px für Proportion) */
+                width: 78px; 
             }
 
             .santa-hat {
                 top: 5px;
                 right: 10px;
-                width: 114px;
+                /* 114px * 1.2 = 137px (ca. 132px für Proportion) */
+                width: 132px;
             }
         }
 
@@ -182,22 +188,36 @@
             z-index: 2;
         }
 
+        /* Größen angepasst (Ursprungsgröße * 1.2) */
         .tree {
-            width: 140px;
+            /* 140px * 1.2 = 168px */
+            width: 168px;
         }
 
         .gift {
-            width: 120px;
+            /* 120px * 1.2 = 144px */
+            width: 144px;
         }
 
         .santa {
-            width: 140px;
+            /* 140px * 1.2 = 168px */
+            width: 168px; 
         }
 
         @media (max-width: 768px) {
-            .tree { width: 100px; }
-            .gift { width: 85px; }
-            .santa { width: 120px; }
+            /* Größen angepasst für Medium Screens */
+            .tree { 
+                /* 100px * 1.2 = 120px */
+                width: 120px; 
+            }
+            .gift { 
+                /* 85px * 1.2 = 102px */
+                width: 102px; 
+            }
+            .santa { 
+                /* 120px * 1.2 = 144px */
+                width: 144px; 
+            }
         }
 
         @media (max-width: 480px) {
@@ -206,9 +226,19 @@
                 gap: 15px;
             }
 
-            .tree { width: 120px; }
-            .gift { width: 102px; }
-            .santa { width: 120px; }
+            /* Größen angepasst für Mobile Screens */
+            .tree { 
+                /* 120px * 1.2 = 144px */
+                width: 144px; 
+            }
+            .gift { 
+                /* 102px * 1.2 = 122.4px (ca. 120px) */
+                width: 120px; 
+            }
+            .santa { 
+                /* 120px * 1.2 = 144px */
+                width: 144px; 
+            }
         }
 
         /* Snowflakes */
@@ -239,7 +269,6 @@
 <body>
     <div class="voucher">
 
-        <!-- Top Decorations -->
         <a href="#holly" class="decoration-item holly">
             <img src="bilder/mistelzweig.png" alt="mistelzweig">
         </a>
@@ -252,7 +281,6 @@
             <img src="bilder/weihnachtsmuetze.png" alt="weihnachtsmuetze">
         </a>
 
-        <!-- Main Text -->
         <div class="main-text">
             <div class="title">GUTSCHEIN</div>
             <div class="description">
@@ -263,7 +291,6 @@
             </div>
         </div>
 
-        <!-- Bottom Decorations -->
         <div class="bottom-decorations">
             <a href="#tree" class="decoration-item tree">
                 <img src="bilder/weihnachtsbaum.png" alt="weihnachtsbaum">
@@ -279,16 +306,17 @@
         </div>
     </div>
 
-    <!-- Snow Script -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const voucher = document.querySelector('.voucher');
+            // Die Schneeflockenanzahl beibehalten
             for (let i = 0; i < 20; i++) {
                 const snow = document.createElement('div');
                 snow.className = 'snow';
 
                 snow.style.left = Math.random() * 100 + '%';
-                snow.style.top = (Math.random() * 60 + 20) + '%'; // nicht oben starten
+                // Die Startposition der Schneeflocken so gelassen, um sie nicht zu weit oben beginnen zu lassen
+                snow.style.top = (Math.random() * 60 + 20) + '%'; 
                 snow.style.animationDelay = Math.random() * 3 + 's';
 
                 voucher.appendChild(snow);
