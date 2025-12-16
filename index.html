@@ -1,231 +1,201 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weihnachtsgutschein</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weihnachtsgutschein</title>
 
-    <style>
-        /* =========================
-           Reset & Base
-        ========================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+/* =========================
+   Reset & Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #c41e3a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #c41e3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+}
 
-        /* =========================
-           Voucher Layout
-        ========================= */
-        .voucher {
-            background: #c41e3a;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* =========================
+   Voucher Layout
+========================= */
+.voucher {
+    background: #c41e3a;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-        /* =========================
-           Decorations – General
-        ========================= */
-        .decoration-item {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+/* =========================
+   Decorations – General
+========================= */
+.decoration-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-        .decoration-item:hover {
-            transform: scale(1.1);
-        }
+.decoration-item:hover {
+    transform: scale(1.1);
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-        /* =========================
-           Top Decorations
-        ========================= */
-        .lebkuchen { /* lebkuchen.png */
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 140px;
-        }
+/* =========================
+   Top Decorations
+========================= */
+.lebkuchen { top: 20px; left: 20px; width: 140px; position: absolute; }
+.kugel { top: 40px; left: 50%; transform: translateX(-50%); width: 84px; position: absolute; }
+.weihnachtsmuetze { top: 30px; right: 30px; width: 144px; position: absolute; }
 
-        .kugel { /* kugel.png */
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 84px;
-        }
+/* =========================
+   Main Text
+========================= */
+.main-text {
+    text-align: center;
+    margin: 90px 0 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        .weihnachtsmuetze { /* weihnachtsmuetze.png */
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 144px;
-        }
+.title { font-size: 72px; font-weight: bold; color: #f5e6d3; letter-spacing: 8px; margin-bottom: 30px; }
+.description { color: #f5e6d3; font-size: 20px; line-height: 1.6; }
 
-        /* =========================
-           Main Text
-        ========================= */
-        .main-text {
-            text-align: center;
-            margin: 90px 0 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+/* =========================
+   Bottom Decorations (nebeneinander)
+========================= */
+.bottom-decorations {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 60px;
+    position: relative;
+    z-index: 2;
+}
 
-        .title {
-            font-size: 72px;
-            font-weight: bold;
-            color: #f5e6d3;
-            letter-spacing: 8px;
-            margin-bottom: 30px;
-        }
+.seniorita { width: 168px; }
+.Santa { width: 168px; }
+.geschenk { width: 144px; }
 
-        .description {
-            color: #f5e6d3;
-            font-size: 20px;
-            line-height: 1.6;
-        }
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+    .voucher { padding: 15px; }
+    .main-text { margin-top: 70px; }
+    .title { font-size: 56px; letter-spacing: 6px; }
+    .description { font-size: 18px; }
+    .seniorita, .Santa { width: 144px; }
+    .geschenk { width: 102px; }
+    .lebkuchen { width: 120px; }
+}
 
-        /* =========================
-           Bottom Decorations
-        ========================= */
-        .seniorita,
-        .Santa,
-        .geschenk { /* Bilder unten */
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
+@media (max-width: 480px) {
+    body { padding: 0; }
+    .voucher { padding: 15px 10px; padding-top: 80px; border-radius: 0; }
+    .lebkuchen { width: 100px; top: 5px; left: 10px; }
+    .kugel { width: 78px; top: 10px; }
+    .weihnachtsmuetze { width: 132px; top: 5px; right: 10px; }
+    .main-text { margin: 40px 0 10px; }
+    .title { font-size: 42px; letter-spacing: 4px; }
+    .description { font-size: 15px; line-height: 1.5; }
+    .seniorita, .Santa { width: 144px; }
+    .geschenk { width: 120px; }
+}
 
-        .seniorita,
-        .Santa { width: 168px; } /* jetzt gleich groß */
-        .geschenk { width: 144px; }
+/* =========================
+   Snow Effect
+========================= */
+.snow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fall 5s linear infinite;
+    z-index: 1;
+}
 
-        /* =========================
-           Responsive
-        ========================= */
-        @media (max-width: 768px) {
-            .voucher { padding: 15px; }
-            .main-text { margin-top: 70px; }
-            .title { font-size: 56px; letter-spacing: 6px; }
-            .description { font-size: 18px; }
-            .seniorita,
-            .Santa { width: 144px; }
-            .geschenk { width: 102px; }
-            .lebkuchen { width: 120px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 0; }
-            .voucher { padding: 15px 10px; padding-top: 80px; border-radius: 0; }
-            .lebkuchen { width: 100px; top: 5px; left: 10px; }
-            .kugel { width: 78px; top: 10px; }
-            .weihnachtsmuetze { width: 132px; top: 5px; right: 10px; }
-            .main-text { margin: 40px 0 10px; }
-            .title { font-size: 42px; letter-spacing: 4px; }
-            .description { font-size: 15px; line-height: 1.5; }
-            .seniorita,
-            .Santa { width: 144px; }
-            .geschenk { width: 120px; }
-        }
-
-        /* =========================
-           Snow Effect
-        ========================= */
-        .snow {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: fall 5s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes fall {
-            from { transform: translateY(-10px); opacity: 1; }
-            to { transform: translateY(100vh); opacity: 0; }
-        }
-    </style>
+@keyframes fall {
+    from { transform: translateY(-10px); opacity: 1; }
+    to { transform: translateY(100vh); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
-    <div class="voucher">
+<div class="voucher">
 
-        <a href="#holly" class="decoration-item lebkuchen">
-            <img src="bilder/lebkuchen.png" alt="lebkuchen">
-        </a>
+    <a href="#holly" class="decoration-item lebkuchen">
+        <img src="bilder/lebkuchen.png" alt="lebkuchen">
+    </a>
 
-        <a href="#ornament" class="decoration-item kugel">
-            <img src="bilder/kugel.png" alt="kugel">
-        </a>
+    <a href="#ornament" class="decoration-item kugel">
+        <img src="bilder/kugel.png" alt="kugel">
+    </a>
 
-        <a href="#hat" class="decoration-item weihnachtsmuetze">
-            <img src="bilder/weihnachtsmuetze.png" alt="weihnachtsmuetze">
-        </a>
+    <a href="#hat" class="decoration-item weihnachtsmuetze">
+        <img src="bilder/weihnachtsmuetze.png" alt="weihnachtsmuetze">
+    </a>
 
-        <div class="main-text">
-            <div class="title">GUTSCHEIN</div>
-            <div class="description">
-                als kleines Extra ein<br>
-                gemeinsamer Shoppingtrip<br>
-                für ein paar T-Shirts und<br>
-                /oder eine schöne Leggings
-            </div>
-        </div>
-
-        <div class="bottom-decorations">
-            <a href="#tree" class="decoration-item seniorita">
-                <img src="bilder/seniorita.png" alt="weihnachtsbaum">
-            </a>
-
-            <a href="#gift" class="decoration-item geschenk">
-                <img src="bilder/geschenk.png" alt="geschenk">
-            </a>
-
-            <a href="#santa" class="decoration-item Santa">
-                <img src="bilder/Santa.png" alt="santa">
-            </a>
+    <div class="main-text">
+        <div class="title">GUTSCHEIN</div>
+        <div class="description">
+            als kleines Extra ein<br>
+            gemeinsamer Shoppingtrip<br>
+            für ein paar T-Shirts und<br>
+            /oder eine schöne Leggings
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const voucher = document.querySelector('.voucher');
-            for (let i = 0; i < 20; i++) {
-                const snow = document.createElement('div');
-                snow.className = 'snow';
-                snow.style.left = Math.random() * 100 + '%';
-                snow.style.top = (Math.random() * 60 + 20) + '%'; 
-                snow.style.animationDelay = Math.random() * 3 + 's';
-                voucher.appendChild(snow);
-            }
-        });
-    </script>
+    <div class="bottom-decorations">
+        <a href="#tree" class="decoration-item seniorita">
+            <img src="bilder/seniorita.png" alt="weihnachtsbaum">
+        </a>
+
+        <a href="#gift" class="decoration-item geschenk">
+            <img src="bilder/geschenk.png" alt="geschenk">
+        </a>
+
+        <a href="#santa" class="decoration-item Santa">
+            <img src="bilder/Santa.png" alt="santa">
+        </a>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const voucher = document.querySelector('.voucher');
+    for (let i = 0; i < 20; i++) {
+        const snow = document.createElement('div');
+        snow.className = 'snow';
+        snow.style.left = Math.random() * 100 + '%';
+        snow.style.top = (Math.random() * 60 + 20) + '%'; 
+        snow.style.animationDelay = Math.random() * 3 + 's';
+        voucher.appendChild(snow);
+    }
+});
+</script>
 </body>
 </html>
