@@ -1,336 +1,158 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weihnachtsgutschein</title>
+/* =========================
+   Reset & Base
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #c41e3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #c41e3a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
-        }
+/* =========================
+   Voucher Layout
+========================= */
+.voucher {
+    background: #c41e3a;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-        .voucher {
-            background: #c41e3a;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* =========================
+   Decorations – General
+========================= */
+.decoration-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-        /* Medium screens */
-        @media (max-width: 768px) {
-            .voucher {
-                padding: 15px;
-            }
-        }
+.decoration-item:hover {
+    transform: scale(1.1);
+}
 
-        /* Mobile layout */
-        @media (max-width: 480px) {
-            body {
-                padding: 0;
-            }
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-            .voucher {
-                padding: 15px 10px;
-                border-radius: 0;
-                padding-top: 80px; /* Mehr Platz oben */
-            }
-        }
+/* =========================
+   Top Decorations
+========================= */
+.holly,
+.ornament,
+.santa-hat {
+    position: absolute;
+}
 
-        /* Decoration general */
-        .decoration-item {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+.holly { top: 30px; left: 30px; width: 112px; }
+.ornament { top: 40px; left: 50%; transform: translateX(-50%); width: 84px; }
+.santa-hat { top: 30px; right: 30px; width: 144px; }
 
-        .decoration-item:hover {
-            transform: scale(1.1);
-        }
+/* =========================
+   Main Text
+========================= */
+.main-text {
+    text-align: center;
+    margin: 90px 0 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        /* Top decorations - Größen angepasst */
-        .holly,
-        .ornament,
-        .santa-hat {
-            position: absolute;
-        }
+.title {
+    font-size: 72px;
+    font-weight: bold;
+    color: #f5e6d3;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+}
 
-        .holly {
-            top: 30px;
-            left: 30px;
-            /* 96px * 1.2 = 115px (ca. 112px für Proportion) */
-            width: 112px; 
-        }
+.description {
+    color: #f5e6d3;
+    font-size: 20px;
+    line-height: 1.6;
+}
 
-        .ornament {
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            /* 72px * 1.2 = 86px (ca. 84px für Proportion) */
-            width: 84px; 
-        }
+/* =========================
+   Bottom Decorations
+========================= */
+.bottom-decorations {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 60px;
+    z-index: 2;
+}
 
-        .santa-hat {
-            top: 30px;
-            right: 30px;
-            /* 120px * 1.2 = 144px */
-            width: 144px;
-        }
+.tree,
+.santa { width: 168px; }
+.gift { width: 144px; }
 
-        /* Mobile size adjustments - Größen angepasst */
-        @media (max-width: 480px) {
-            .holly {
-                top: 5px;
-                left: 10px;
-                /* 84px * 1.2 = 101px (ca. 96px für Proportion) */
-                width: 96px; 
-            }
+/* =========================
+   PNG Visual Fix
+========================= */
+.santa img { transform: scale(0.85); }
 
-            .ornament {
-                top: 10px;
-                /* 66px * 1.2 = 79px (ca. 78px für Proportion) */
-                width: 78px; 
-            }
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+    .voucher { padding: 15px; }
+    .main-text { margin-top: 70px; }
+    .title { font-size: 56px; letter-spacing: 6px; }
+    .description { font-size: 18px; }
+    .tree { width: 120px; }
+    .gift { width: 102px; }
+    .santa { width: 144px; }
+}
 
-            .santa-hat {
-                top: 5px;
-                right: 10px;
-                /* 114px * 1.2 = 137px (ca. 132px für Proportion) */
-                width: 132px;
-            }
-        }
+@media (max-width: 480px) {
+    body { padding: 0; }
+    .voucher { padding: 15px 10px; padding-top: 80px; border-radius: 0; }
+    .holly { width: 96px; top: 5px; left: 10px; }
+    .ornament { width: 78px; top: 10px; }
+    .santa-hat { width: 132px; top: 5px; right: 10px; }
+    .main-text { margin: 40px 0 10px; }
+    .title { font-size: 42px; letter-spacing: 4px; }
+    .description { font-size: 15px; line-height: 1.5; }
+    .bottom-decorations { margin-top: 40px; gap: 15px; }
+    .tree,
+    .santa { width: 144px; }
+    .gift { width: 120px; }
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+/* =========================
+   Snow Effect
+========================= */
+.snow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fall 5s linear infinite;
+    z-index: 1;
+}
 
-        /* PNG-Größen optisch angleichen */
-        .tree img {
-            transform: scale(1);
-        }
-
-        .santa img {
-            transform: scale(0.85);
-        }
-
-        /* Main text area */
-        .main-text {
-            text-align: center;
-            margin: 90px 0 20px 0;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .title {
-            font-size: 72px;
-            font-weight: bold;
-            color: #f5e6d3;
-            letter-spacing: 8px;
-            margin-bottom: 30px;
-        }
-
-        .description {
-            color: #f5e6d3;
-            font-size: 20px;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            .main-text {
-                margin: 70px 0 20px 0;
-            }
-
-            .title {
-                font-size: 56px;
-                letter-spacing: 6px;
-            }
-
-            .description {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-text {
-                margin: 40px 0 10px 0;
-            }
-
-            .title {
-                font-size: 42px;
-                letter-spacing: 4px;
-            }
-
-            .description {
-                font-size: 15px;
-                line-height: 1.5;
-            }
-        }
-
-        /* Bottom Decorations */
-        .bottom-decorations {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-top: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Größen angepasst (Ursprungsgröße * 1.2) */
-        .tree {
-            /* 140px * 1.2 = 168px */
-            width: 168px;
-        }
-
-        .gift {
-            /* 120px * 1.2 = 144px */
-            width: 144px;
-        }
-
-        .santa {
-            /* 140px * 1.2 = 168px */
-            width: 168px; 
-        }
-
-        @media (max-width: 768px) {
-            /* Größen angepasst für Medium Screens */
-            .tree { 
-                /* 100px * 1.2 = 120px */
-                width: 120px; 
-            }
-            .gift { 
-                /* 85px * 1.2 = 102px */
-                width: 102px; 
-            }
-            .santa { 
-                /* 120px * 1.2 = 144px */
-                width: 144px; 
-            }
-        }
-
-        @media (max-width: 480px) {
-            .bottom-decorations {
-                margin-top: 40px;
-                gap: 15px;
-            }
-
-            /* Größen angepasst für Mobile Screens */
-            .tree { 
-                /* 120px * 1.2 = 144px */
-                width: 144px; 
-            }
-            .gift { 
-                /* 102px * 1.2 = 122.4px (ca. 120px) */
-                width: 120px; 
-            }
-            .santa { 
-                /* 120px * 1.2 = 144px */
-                width: 144px; 
-            }
-        }
-
-        /* Snowflakes */
-        .snow {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: fall 5s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="voucher">
-
-        <a href="#holly" class="decoration-item holly">
-            <img src="bilder/lebkuchen.png" alt="lebkuchen">
-        </a>
-
-        <a href="#ornament" class="decoration-item ornament">
-            <img src="bilder/kugel.png" alt="kugel">
-        </a>
-
-        <a href="#hat" class="decoration-item santa-hat">
-            <img src="bilder/weihnachtsmuetze.png" alt="weihnachtsmuetze">
-        </a>
-
-        <div class="main-text">
-            <div class="title">GUTSCHEIN</div>
-            <div class="description">
-                als kleines Extra ein<br>
-                gemeinsamer Shoppingtrip<br>
-                für ein paar T-Shirts und<br>
-                /oder eine schöne Leggings
-            </div>
-        </div>
-
-        <div class="bottom-decorations">
-            <a href="#tree" class="decoration-item tree">
-                <img src="bilder/seniorita.png" alt="weihnachtsbaum">
-            </a>
-
-            <a href="#gift" class="decoration-item gift">
-                <img src="bilder/geschenk.png" alt="geschenk">
-            </a>
-
-            <a href="#santa" class="decoration-item santa">
-                <img src="bilder/Santa.png" alt="santa">
-            </a>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const voucher = document.querySelector('.voucher');
-            // Die Schneeflockenanzahl beibehalten
-            for (let i = 0; i < 20; i++) {
-                const snow = document.createElement('div');
-                snow.className = 'snow';
-
-                snow.style.left = Math.random() * 100 + '%';
-                // Die Startposition der Schneeflocken so gelassen, um sie nicht zu weit oben beginnen zu lassen
-                snow.style.top = (Math.random() * 60 + 20) + '%'; 
-                snow.style.animationDelay = Math.random() * 3 + 's';
-
-                voucher.appendChild(snow);
-            }
-        });
-    </script>
-</body>
-</html>
+@keyframes fall {
+    from { transform: translateY(-10px); opacity: 1; }
+    to { transform: translateY(100vh); opacity: 0; }
+}
