@@ -1,4 +1,12 @@
-/* =========================
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weihnachtsgutschein</title>
+
+    <style>
+        /* =========================
    Reset & Base
 ========================= */
 * {
@@ -156,3 +164,66 @@ img {
     from { transform: translateY(-10px); opacity: 1; }
     to { transform: translateY(100vh); opacity: 0; }
 }
+
+    </style>
+</head>
+
+<body>
+    <div class="voucher">
+
+        <a href="#holly" class="decoration-item holly">
+            <img src="bilder/lebkuchen.png" alt="lebkuchen">
+        </a>
+
+        <a href="#ornament" class="decoration-item ornament">
+            <img src="bilder/kugel.png" alt="kugel">
+        </a>
+
+        <a href="#hat" class="decoration-item santa-hat">
+            <img src="bilder/weihnachtsmuetze.png" alt="weihnachtsmuetze">
+        </a>
+
+        <div class="main-text">
+            <div class="title">GUTSCHEIN</div>
+            <div class="description">
+                als kleines Extra ein<br>
+                gemeinsamer Shoppingtrip<br>
+                für ein paar T-Shirts und<br>
+                /oder eine schöne Leggings
+            </div>
+        </div>
+
+        <div class="bottom-decorations">
+            <a href="#tree" class="decoration-item tree">
+                <img src="bilder/seniorita.png" alt="weihnachtsbaum">
+            </a>
+
+            <a href="#gift" class="decoration-item gift">
+                <img src="bilder/geschenk.png" alt="geschenk">
+            </a>
+
+            <a href="#santa" class="decoration-item santa">
+                <img src="bilder/Santa.png" alt="santa">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const voucher = document.querySelector('.voucher');
+            // Die Schneeflockenanzahl beibehalten
+            for (let i = 0; i < 20; i++) {
+                const snow = document.createElement('div');
+                snow.className = 'snow';
+
+                snow.style.left = Math.random() * 100 + '%';
+                // Die Startposition der Schneeflocken so gelassen, um sie nicht zu weit oben beginnen zu lassen
+                snow.style.top = (Math.random() * 60 + 20) + '%'; 
+                snow.style.animationDelay = Math.random() * 3 + 's';
+
+                voucher.appendChild(snow);
+            }
+        });
+    </script>
+</body>
+</html>
